@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import NotificationCard from "../NotificationCard";
 import Button from "../Button";
 import useNotificationsStore from "../../stores/notifications";
@@ -12,6 +18,8 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
   isOpen,
   setIsOpen,
 }) => {
+  const notificationListRef = useRef<HTMLDivElement | null>(null);
+
   const { notifications, getUnreadNotifications, setReadAllNotification } =
     useNotificationsStore();
 
@@ -22,6 +30,13 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
   const fetchUnreadNotifications = useCallback(async () => {
     await getUnreadNotifications({ orgId: 10 });
   }, [getUnreadNotifications]);
+
+  const handleClose = useCallback(() => {
+    setIsOpen((value) => !value);
+    setTimeout(() => {
+      notificationListRef.current?.scrollTo(0, 0);
+    }, 500);
+  }, [setIsOpen]);
 
   useEffect(() => {
     fetchUnreadNotifications();
@@ -51,7 +66,10 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
               mark all as read
             </Button>
           </div>
-          <div className="flex flex-1 flex-col overflow-y-auto max-h-screen">
+          <div
+            ref={notificationListRef}
+            className="flex flex-1 flex-col overflow-y-auto max-h-screen"
+          >
             {notifications?.map(
               (notification) =>
                 !notification.isRead && (
@@ -61,14 +79,14 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
                     title={notification.title}
                     description={notification.description}
                     type={notification.type}
-                    setIsOpen={setIsOpen}
+                    setIsOpen={handleClose}
                   />
                 )
             )}
           </div>
         </div>
       </div>
-      <div className="w-full h-full" onClick={() => setIsOpen(false)} />
+      <div className="w-full h-full" onClick={handleClose} />
     </div>
   );
 };

@@ -20,9 +20,11 @@ type NotificationStoreState = {
   setReadNotification: ({
     orgId,
     recordId,
+    removeLocally,
   }: {
     orgId: number;
     recordId: number;
+    removeLocally?: boolean;
   }) => Promise<void>;
   clear: void;
 };
@@ -83,21 +85,25 @@ const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
   setReadNotification: async ({
     orgId,
     recordId,
+    removeLocally = true,
   }: {
     orgId: number;
     recordId: number;
+    removeLocally?: boolean;
   }) => {
     try {
-      const newNotifications = get().notifications?.map((notification) =>
-        notification.recordId === recordId
-          ? {
-              ...notification,
-              isRead: true,
-            }
-          : notification
-      );
-      console.log("BBBBB", newNotifications?.[1]);
-      set({ notifications: newNotifications ?? get().notifications });
+      if (removeLocally) {
+        const newNotifications = get().notifications?.map((notification) =>
+          notification.recordId === recordId
+            ? {
+                ...notification,
+                isRead: true,
+              }
+            : notification
+        );
+
+        set({ notifications: newNotifications ?? get().notifications });
+      }
 
       const unreadNotifications = await setReadNotificationsUseCase({
         orgId,
