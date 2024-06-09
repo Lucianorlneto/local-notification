@@ -10,7 +10,11 @@ const Header: React.FC = () => {
 
   return (
     <div className="p-8 flex bg-gray-900 h-20  items-center justify-start">
-      <Button onClick={toggleDrawer} icon={<IoIosNotifications />}>
+      <Button
+        data-cy="notifications-button"
+        onClick={toggleDrawer}
+        icon={<IoIosNotifications />}
+      >
         Notifications
       </Button>
       <NotificationsDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
