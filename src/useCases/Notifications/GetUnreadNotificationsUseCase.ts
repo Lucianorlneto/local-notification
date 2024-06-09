@@ -7,7 +7,7 @@ export async function getUnreadNotificationsUseCase({
   orgId: number;
 }): Promise<CustomNotification[]> {
   const res = await notificationsApi.get<CustomNotificationDto[]>(
-    `${orgId}/unread?key=64d94490`
+    `${orgId}/unread`
   );
 
   const notifications = notificationsDtoToNotifications(res.data);
