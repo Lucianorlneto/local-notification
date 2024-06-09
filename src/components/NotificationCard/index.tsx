@@ -10,6 +10,7 @@ type NotificationCardProps = {
   title: string;
   description: string;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  position: number;
 };
 
 const NotificationCard: React.FC<NotificationCardProps> = ({
@@ -18,6 +19,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
   title,
   type,
   setIsOpen,
+  position,
 }) => {
   const { getNotificationIcon } = useNotifications();
   const { setReadNotification } = useNotificationsStore();
@@ -43,6 +45,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
 
       <div>
         <Link
+          data-cy={`notification-card-${position}`}
           className="flex flex-1 min-w-0 bg-slate-500 flex-col p-2 rounded-sm"
           to={`/notification/${id}`}
           onClick={() => {
@@ -57,6 +60,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
             {description}
           </p>
           <Button
+            data-cy={`notification-card-read-button-${position}`}
             className="self-end"
             onClick={async (e) => {
               e.stopPropagation();
@@ -71,6 +75,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
         <div className="flex bg-slate-500 pb-2 justify-end pr-6">
           <label className="text-white block">
             <input
+              data-cy={`notification-card-checkbox-${position}`}
               className="relative align-middle bottom-0"
               type="checkbox"
               checked={readCheck}

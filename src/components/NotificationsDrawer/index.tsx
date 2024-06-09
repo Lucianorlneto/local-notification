@@ -62,7 +62,10 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
             Notifications
           </h1>
           <div className="mb-4 flex justify-end">
-            <Button onClick={() => handleReadAllNotifications()}>
+            <Button
+              data-cy="notification-drawer-read-all-button"
+              onClick={() => handleReadAllNotifications()}
+            >
               mark all as read
             </Button>
           </div>
@@ -71,9 +74,10 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
             className="flex flex-1 flex-col overflow-y-auto max-h-screen"
           >
             {notifications?.map(
-              (notification) =>
+              (notification, index) =>
                 !notification.isRead && (
                   <NotificationCard
+                    position={index}
                     key={notification.recordId}
                     id={notification.recordId}
                     title={notification.title}
