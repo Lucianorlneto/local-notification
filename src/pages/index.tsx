@@ -1,5 +1,5 @@
-import Error from "./error";
-import Notification from "./notification";
-import Dashboard from "./dashboard";
+import Error from "./Error";
+import Notification from "./Notification";
+import Dashboard from "./Dashboard";
 
 export { Error, Notification, Dashboard };
