@@ -33,7 +33,7 @@ const Notification: React.FC = () => {
     );
 
   return (
-    <div className="flex flex-1 justify-center flex-col">
+    <div className="flex flex-1 flex-col self-start">
       <div className="flex flex-1 mb-8">
         {getNotificationIcon({ type: currentNotification.type, size: 30 })}
         <h1 data-cy="notification-title" className="text-2xl font-bold ml-4">

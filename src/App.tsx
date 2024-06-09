@@ -5,9 +5,9 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App h-[100%]">
+    <div className="App flex h-screen flex-col">
       <Header />
-      <div className="p-16">
+      <div className="flex h-full justify-center items-center p-16">
         <Outlet />
       </div>
       <ToastContainer />
