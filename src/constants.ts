@@ -44,3 +44,18 @@ export const testNotifications: CustomNotification[] = [
     isRead: false,
   },
 ];
+
+export const testOrganizations: Organization[] = [
+  {
+    id: 1,
+    name: "Organization 1",
+  },
+  {
+    id: 2,
+    name: "Organization 2",
+  },
+  {
+    id: 3,
+    name: "Organization 3",
+  },
+];

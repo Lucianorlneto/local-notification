@@ -9,6 +9,7 @@ import React, {
 import NotificationCard from "../NotificationCard";
 import Button from "../Button";
 import useNotificationsStore from "../../stores/notifications";
+import useOrganizationsStore from "../../stores/organizations";
 
 type NotificationsDrawerProps = {
   isOpen: boolean;
@@ -18,7 +19,7 @@ type NotificationsDrawerProps = {
 const EmptyNotificationsList = () => {
   return (
     <>
-      <h2 className="text-white text-xl">
+      <h2 className="text-gray-200 text-xl">
         There are no unread notifications at the moment
       </h2>
     </>
@@ -33,21 +34,22 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
 
   const { notifications, getUnreadNotifications, setReadAllNotification } =
     useNotificationsStore();
+  const { selectedOrganization } = useOrganizationsStore();
 
   const currentNotifications = useMemo(() => {
     return notifications?.filter((notification) => !notification.isRead);
   }, [notifications]);
 
   const handleReadAllNotifications = useCallback(async () => {
-    await setReadAllNotification({ orgId: 10 });
+    await setReadAllNotification();
   }, [setReadAllNotification]);
 
   const fetchUnreadNotifications = useCallback(async () => {
-    await getUnreadNotifications({ orgId: 10 });
+    await getUnreadNotifications();
   }, [getUnreadNotifications]);
 
   const handleClose = useCallback(() => {
-    setIsOpen((value) => !value);
+    setIsOpen(false);
     setTimeout(() => {
       notificationListRef.current?.scrollTo(0, 0);
     }, 500);
@@ -57,7 +59,7 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
     return (
       <>
         <Button
-          className="self-end"
+          className="self-start"
           data-cy="notification-drawer-read-all-button mb-8"
           onClick={() => handleReadAllNotifications()}
         >
@@ -85,27 +87,27 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
 
   useEffect(() => {
     fetchUnreadNotifications();
-  }, [fetchUnreadNotifications]);
+  }, [fetchUnreadNotifications, selectedOrganization]);
 
   console.log(notifications);
 
   return (
     <div
       className={
-        "fixed flex-1 z-10 bg-gray-900 bg-opacity-50 inset-0 transform ease-in-out " +
+        "fixed flex-1 z-10 bg-gray-900 bg-opacity-50 inset-0 transform " +
         (isOpen
-          ? "transition-opacity opacity-100 duration-300 translate-x-0"
-          : "transition-all duration-300 opacity-0 translate-x-full")
+          ? "transition-opacity duration-300 opacity-100 translate-x-0"
+          : "transition-all duration-300 opacity-0 -translate-x-full")
       }
     >
       <div
         className={
-          "h-full p-4  w-screen max-w-lg right-0 absolute bg-gray-600 shadow-xl duration-300 ease-in-out transition-all transform  " +
-          (isOpen ? " translate-x-0 " : " translate-x-full ")
+          "h-full p-4  w-screen max-w-lg left-0 absolute bg-gray-600 shadow-xl duration-300 transition-all" +
+          (isOpen ? " translate-x-0 " : " -translate-x-full ")
         }
       >
         <div className="flex h-full flex-col">
-          <h1 className="text-2xl text-white font-semibold text-left mb-4">
+          <h1 className="text-2xl text-gray-200 font-semibold text-left mb-4">
             Notifications
           </h1>
 

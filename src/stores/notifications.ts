@@ -5,18 +5,20 @@ import { toast } from "react-toastify";
 import { getUnreadNotificationsUseCase } from "../useCases/Notifications/GetUnreadNotificationsUseCase";
 import { setReadAllNotificationsUseCase } from "../useCases/Notifications/SetReadAllNotificationsUseCase";
 import { setReadNotificationsUseCase } from "../useCases/Notifications/SetReadNotificationUseCase";
+import { testNotifications } from "../constants";
+import useOrganizationsStore from "./organizations";
 
 const INITIAL_STATE = {
   loading: false,
-  notifications: null,
+  notifications: testNotifications,
 };
 
 type NotificationStoreState = {
   loading: boolean;
   notifications: CustomNotification[] | null;
-  getAllNotifications: ({ orgId }: { orgId: number }) => Promise<void>;
-  getUnreadNotifications: ({ orgId }: { orgId: number }) => Promise<void>;
-  setReadAllNotification: ({ orgId }: { orgId: number }) => Promise<void>;
+  getAllNotifications: () => Promise<void>;
+  getUnreadNotifications: () => Promise<void>;
+  setReadAllNotification: () => Promise<void>;
   setReadNotification: ({
     orgId,
     recordId,
@@ -31,11 +33,13 @@ type NotificationStoreState = {
 
 const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
   loading: false,
-  notifications: null,
-  getAllNotifications: async ({ orgId }: { orgId: number }) => {
+  notifications: testNotifications,
+  getAllNotifications: async () => {
     try {
       set({ loading: true });
-      const notifications = await getAllNotificationsUseCase({ orgId });
+      const notifications = await getAllNotificationsUseCase({
+        orgId: useOrganizationsStore.getState().selectedOrganization?.id,
+      });
 
       set({ notifications: notifications });
     } catch (error) {
@@ -46,11 +50,11 @@ const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
       set({ loading: false });
     }
   },
-  getUnreadNotifications: async ({ orgId }: { orgId: number }) => {
+  getUnreadNotifications: async () => {
     try {
       set({ loading: true });
       const unreadNotifications = await getUnreadNotificationsUseCase({
-        orgId,
+        orgId: useOrganizationsStore.getState().selectedOrganization?.id,
       });
 
       set({ notifications: unreadNotifications });
@@ -62,7 +66,7 @@ const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
       set({ loading: false });
     }
   },
-  setReadAllNotification: async ({ orgId }: { orgId: number }) => {
+  setReadAllNotification: async () => {
     try {
       const readNotifications = get().notifications?.map((notification) => ({
         ...notification,
@@ -71,7 +75,7 @@ const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
       set({ notifications: readNotifications ?? [] });
 
       const unreadNotifications = await setReadAllNotificationsUseCase({
-        orgId,
+        orgId: useOrganizationsStore.getState().selectedOrganization?.id,
       });
 
       set({ notifications: unreadNotifications });
@@ -83,11 +87,9 @@ const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
     }
   },
   setReadNotification: async ({
-    orgId,
     recordId,
     removeLocally = true,
   }: {
-    orgId: number;
     recordId: number;
     removeLocally?: boolean;
   }) => {
@@ -106,7 +108,7 @@ const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
       }
 
       const unreadNotifications = await setReadNotificationsUseCase({
-        orgId,
+        orgId: useOrganizationsStore.getState().selectedOrganization?.id,
         messageId: recordId,
       });
 
