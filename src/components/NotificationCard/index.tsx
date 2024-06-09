@@ -38,12 +38,12 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
   );
 
   return (
-    <div className="flex mb-8 flex-row">
+    <div className="flex flex-1 mb-8 flex-row">
       <div className="flex mr-1 bg-slate-500 justify-center p-2 rounded-sm">
         {getNotificationIcon({ type: type })}
       </div>
 
-      <div>
+      <div className="flex flex-1 flex-col">
         <Link
           data-cy={`notification-card-${position}`}
           className="flex flex-1 min-w-0 bg-slate-500 flex-col p-2 rounded-sm"
@@ -53,9 +53,6 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
             handleReadNotification();
           }}
         >
-          <h3 className="text-white font-semibold text-lg text-left truncate text-ellipsis">
-            {title}
-          </h3>
           <p className="text-left overflow-hidden text-white mb-2">
             {description}
           </p>
