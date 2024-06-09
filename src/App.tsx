@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="App flex h-screen flex-col">
       <Header />
-      <div className="flex h-full justify-center items-center p-16">
-        <Outlet />
-      </div>
+
+      <Outlet />
+
       <ToastContainer />
     </div>
   );
