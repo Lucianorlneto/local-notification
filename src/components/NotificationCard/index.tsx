@@ -53,7 +53,10 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
             handleReadNotification();
           }}
         >
-          <p className="text-left overflow-hidden text-white mb-2">
+          <h3 className="text-white max-w-[350px] font-semibold text-lg text-left truncate text-ellipsis">
+            {title}
+          </h3>
+          <p className="text-left overflow-hidden text-gray-200 mb-2">
             {description}
           </p>
           <Button
@@ -70,7 +73,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
         </Link>
 
         <div className="flex bg-slate-500 pb-2 justify-end pr-6">
-          <label className="text-white block">
+          <label className="text-gray-200 block">
             <input
               data-cy={`notification-card-checkbox-${position}`}
               className="relative align-middle bottom-0"
