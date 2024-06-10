@@ -10,7 +10,7 @@ function App() {
 
       <Outlet />
 
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
     </div>
   );
 }
