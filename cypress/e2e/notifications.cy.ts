@@ -1,6 +1,24 @@
-describe("Clicking Notification Button", () => {
-  Cypress.env("REACT_APP_ENV", "local");
-  Cypress.env("REACT_APP_API_URL", "https://my.api.mockaroo.com");
+describe("Testing Notifications", () => {
+  Cypress.env("REACT_APP_ENV", "dev");
+
+  it("click outside drawer", () => {
+    cy.visit("/");
+
+    cy.wait(500);
+
+    cy.get('[data-cy="notifications-button"]').should("exist");
+    cy.get('[data-cy="notifications-button"]').click();
+
+    cy.wait(300);
+
+    cy.get('[data-cy="notification-drawer-read-all-button"]').should("exist");
+
+    cy.get('[data-cy="drawer-background"]').click(80, 80);
+
+    cy.get('[data-cy="notification-drawer-read-all-button"]').should(
+      "not.exist"
+    );
+  });
 
   it("access first notification", () => {
     cy.visit("/");
