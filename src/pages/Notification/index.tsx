@@ -8,9 +8,6 @@ const Notification: React.FC = () => {
   const { id } = useParams();
   const { getNotificationIcon } = useNotifications();
   const { notifications } = useNotificationsStore();
-  console.log("notifications", notifications);
-
-  console.log(id);
 
   const currentNotification = useMemo(() => {
     if (id)
