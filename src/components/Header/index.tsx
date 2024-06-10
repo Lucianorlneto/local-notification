@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 function getDefaultTheme() {
-  if (document.documentElement.classList.contains("dark")) return "dark";
+  if (document.getElementById("main-app")?.classList.contains("dark"))
+    return "dark";
 
   return "light";
 }
@@ -19,7 +20,7 @@ const Header: React.FC = () => {
 
   const toggleTheme = useCallback(() => {
     setTheme((value) => (value === "dark" ? "light" : "dark"));
-    document.documentElement.classList.toggle("dark");
+    document.getElementById("main-app")?.classList.toggle("dark");
   }, []);
 
   return (
@@ -46,9 +47,9 @@ const Header: React.FC = () => {
           className="bg-blue-500 rounded-full p-1 cursor-pointer dark:bg-slate-600 ease-in-out duration-200"
         >
           {theme === "dark" ? (
-            <MdDarkMode className="fill-current text-slate-200" size={30} />
-          ) : (
             <MdLightMode className="fill-current text-slate-200" size={30} />
+          ) : (
+            <MdDarkMode className="fill-current text-slate-200" size={30} />
           )}
         </div>
       </div>

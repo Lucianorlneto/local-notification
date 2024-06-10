@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App flex h-screen flex-col">
+    <div id="main-app" className="App flex h-screen flex-col dark">
       <header>
         <Header />
       </header>
