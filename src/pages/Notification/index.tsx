@@ -35,8 +35,8 @@ const Notification: React.FC = () => {
 
   return (
     <Layout>
-      <div className="flex flex-1 items-start">
-        <div className="border-2 border-gray-300 p-4 rounded-md">
+      <div className="flex flex-1 items-start w-full">
+        <div className="border-2 border-gray-300 p-4 rounded-md w-full">
           <div className="flex mb-8 self-start">
             {getNotificationIcon({ type: currentNotification.type, size: 30 })}
             <h1

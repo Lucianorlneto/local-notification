@@ -15,7 +15,7 @@ export function useNotifications() {
 
       if (type === "SEVERE")
         return (
-          <MdError data-cy="notification-icon" color="FireBrick" size={size} />
+          <MdError data-cy="notification-icon" color="indianRed" size={size} />
         );
 
       return (
