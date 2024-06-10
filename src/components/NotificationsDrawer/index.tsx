@@ -59,8 +59,8 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
     return (
       <>
         <Button
-          className="self-start"
-          data-cy="notification-drawer-read-all-button mb-8"
+          className="self-start mb-8"
+          data-cy="notification-drawer-read-all-button"
           onClick={() => handleReadAllNotifications()}
         >
           mark all as read
@@ -93,6 +93,7 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
 
   return (
     <div
+      data-cy="drawer-background"
       className={
         "fixed flex-1 z-10 bg-gray-900 bg-opacity-50 inset-0 transform " +
         (isOpen

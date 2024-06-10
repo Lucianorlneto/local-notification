@@ -7,7 +7,7 @@ const Dashboard: React.FC = () => {
 
   const RenderOrganizations = useCallback(() => {
     return (
-      <div className="flex w-full justify-evenly gap-16">
+      <div className="flex w-full justify-evenly gap-16 min-w-16 overflow-x-auto p-2 md: max-w-full">
         {organizations?.map((organization) => (
           <OrganizationCard key={organization.id} organization={organization} />
         ))}
