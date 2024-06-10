@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Local Notifications App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created as a code challenge answer for mParticle code challenge for the front-end developer position.
+Created with [Create React App](https://facebook.github.io/create-react-app/docs/getting-started).
+
+**the env files were added to the project for testing purposes only**
 
 ## Available Scripts
 
@@ -8,16 +11,27 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode. Using the .env file with [env-cdm](https://github.com/toddbluhm/env-cmd)\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+The default env file will make the app fetch the data from Mockaroo server, for dynamic notifications. **Only 200 requests per day**.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm start:local`
+
+Runs the app in the development mode. Using the .env.local file with [env-cdm](https://github.com/toddbluhm/env-cmd)\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+The env.local file will make the app fetch the data from a unexisting server, but it will use a mocked constant value for the notifications.
+
+### `npm cy:open`
+
+Runs [Cypress](https://www.cypress.io/) for E2E tests.
 
 ### `npm run build`
 
