@@ -9,7 +9,7 @@ const Button: React.FC<ButtonProps> = ({ children, icon, ...rest }) => {
   return (
     <button
       {...rest}
-      className={`py-2 px-4 rounded-md bg-gray-500 text-gray-200 font-bold ${rest.className}`}
+      className={`py-2 px-4 rounded-md bg-blue-400 dark:bg-slate-500 text-gray-200 font-bold ${rest.className}`}
     >
       <div className="flex flex-row">
         {icon && (

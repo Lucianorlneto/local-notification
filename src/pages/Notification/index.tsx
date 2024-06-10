@@ -33,19 +33,19 @@ const Notification: React.FC = () => {
   return (
     <Layout>
       <div className="flex flex-1 items-start w-full">
-        <div className="border-2 border-gray-300 p-4 rounded-md w-full">
+        <div className="border-2 border-gray-700 dark:border-gray-300 p-4 rounded-md w-full">
           <div className="flex mb-8 self-start">
             {getNotificationIcon({ type: currentNotification.type, size: 30 })}
             <h1
               data-cy="notification-title"
-              className="text-2xl font-bold ml-4 text-gray-300"
+              className="text-2xl font-bold ml-4 text-gray-900 dark:text-gray-300"
             >
               {currentNotification.title}
             </h1>
           </div>
           <p
             data-cy="notification-description"
-            className="text-lg text-left text-gray-200"
+            className="text-lg text-left text-gray-700 dark:text-gray-200"
           >
             {currentNotification.description}
           </p>

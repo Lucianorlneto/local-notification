@@ -17,8 +17,10 @@ const Dashboard: React.FC = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl text-gray-200 font-semibold mb-4">Welcome!</h1>
-      <h2 className="text-2xl text-gray-300 mb-16">
+      <h1 className="text-3xl text-gray-900 dark:text-gray-200 font-semibold mb-4">
+        Welcome!
+      </h1>
+      <h2 className="text-2xl text-gray-700 dark:text-gray-300 mb-16">
         Select your organization and press the Notification's button to start
         exploring!
       </h2>

@@ -39,14 +39,14 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
 
   return (
     <div className="flex flex-1 mb-8 flex-row">
-      <div className="flex mr-1 bg-slate-500 justify-center p-2 rounded-sm">
+      <div className="flex mr-1 bg-blue-500 dark:bg-slate-600 justify-center p-2 rounded-sm">
         {getNotificationIcon({ type: type })}
       </div>
 
       <div className="flex flex-1 flex-col">
         <Link
           data-cy={`notification-card-${position}`}
-          className="flex flex-1 min-w-0 bg-slate-500 flex-col p-2 rounded-sm"
+          className="flex flex-1 min-w-0 bg-blue-500 dark:bg-slate-600 flex-col p-2 rounded-sm"
           to={`/notification/${id}`}
           onClick={() => {
             setIsOpen(false);
@@ -72,7 +72,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
           </Button>
         </Link>
 
-        <div className="flex bg-slate-500 pb-2 justify-end pr-6">
+        <div className="flex bg-blue-500 dark:bg-slate-600 pb-2 justify-end pr-6">
           <label className="text-gray-200 block">
             <input
               data-cy={`notification-card-checkbox-${position}`}

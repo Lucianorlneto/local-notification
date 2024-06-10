@@ -6,7 +6,9 @@ import { Outlet } from "react-router-dom";
 function App() {
   return (
     <div className="App flex h-screen flex-col">
-      <Header />
+      <header>
+        <Header />
+      </header>
 
       <Outlet />
 

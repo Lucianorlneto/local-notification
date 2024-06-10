@@ -65,7 +65,7 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
         >
           mark all as read
         </Button>
-        <div className="flex h-full flex-col overflow-y-auto mt-4">
+        <div className="flex h-full flex-col overflow-y-auto mt-4 rounded-lg">
           {currentNotifications?.map(
             (notification, index) =>
               !notification.isRead && (
@@ -89,13 +89,11 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
     fetchUnreadNotifications();
   }, [fetchUnreadNotifications, selectedOrganization]);
 
-  console.log(notifications);
-
   return (
     <div
       data-cy="drawer-background"
       className={
-        "fixed flex-1 z-10 bg-gray-900 bg-opacity-50 inset-0 transform " +
+        "fixed flex-1 z-10 bg-black bg-opacity-40 inset-0 transform " +
         (isOpen
           ? "transition-opacity duration-300 opacity-100 translate-x-0"
           : "transition-all duration-300 opacity-0 -translate-x-full")
@@ -103,7 +101,7 @@ const NotificationsDrawer: React.FC<NotificationsDrawerProps> = ({
     >
       <div
         className={
-          "h-full p-4  w-screen max-w-lg left-0 absolute bg-gray-600 shadow-xl duration-300 transition-all" +
+          "h-full p-4  w-screen max-w-lg left-0 absolute bg-blue-600 dark:bg-slate-700 shadow-xl duration-300 transition-all" +
           (isOpen ? " translate-x-0 " : " -translate-x-full ")
         }
       >
