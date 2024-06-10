@@ -13,6 +13,9 @@ const OrganizationCard: React.FC<OrganizationCardProps> = ({
 
   return (
     <div
+      data-cy={`organization-card-${organization.id}${
+        selectedOrganization.id === organization.id ? "-selected" : ""
+      }`}
       onClick={() => setSelectedOrganization(organization)}
       className={`flex flex-1 border-2 border-gray-200 h-20 w-40 rounded-md justify-center items-center text-gray-200 text-lg cursor-pointer ${
         selectedOrganization?.id === organization.id && "bg-gray-600"
