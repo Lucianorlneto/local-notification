@@ -10,7 +10,8 @@ import useOrganizationsStore from "./organizations";
 
 const INITIAL_STATE = {
   loading: false,
-  notifications: testNotifications,
+  notifications:
+    process.env.REACT_APP_ENV === "local" ? testNotifications : null,
 };
 
 type NotificationStoreState = {
@@ -33,7 +34,8 @@ type NotificationStoreState = {
 
 const useNotificationsStore = create<NotificationStoreState>((set, get) => ({
   loading: false,
-  notifications: testNotifications,
+  notifications:
+    process.env.REACT_APP_ENV === "local" ? testNotifications : null,
   getAllNotifications: async () => {
     try {
       set({ loading: true });

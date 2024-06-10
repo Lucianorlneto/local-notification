@@ -5,7 +5,7 @@ export const notificationsApi = axios.create({
 });
 
 const requestInterceptor = (config: InternalAxiosRequestConfig) => {
-  if (process.env.REACT_APP_ENV === "local") {
+  if (process.env.REACT_APP_ENV === "dev") {
     config.url = config.url + "?key=64d94490";
   }
 
