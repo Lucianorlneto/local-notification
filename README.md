@@ -3,6 +3,8 @@
 This project was created as a code challenge answer for mParticle code challenge for the front-end developer position.
 Created with [Create React App](https://facebook.github.io/create-react-app/docs/getting-started).
 
+State management done using [Zustand](https://github.com/pmndrs/zustand) library.
+
 **the env files were added to the project for testing purposes only**
 
 ## Available Scripts
